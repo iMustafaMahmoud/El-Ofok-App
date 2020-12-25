@@ -1,11 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
+import MuiListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -14,6 +14,24 @@ import EventNoteIcon from "@material-ui/icons/EventNote";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import IconButton from "@material-ui/core/IconButton";
 import { useTranslation } from "react-i18next";
+
+const ListItem = withStyles({
+  root: {
+    "&$selected": {
+      backgroundColor: "red",
+      color: "white",
+    },
+    "&$selected:hover": {
+      backgroundColor: "purple",
+      color: "white",
+    },
+    "&:hover": {
+      backgroundColor: "blue",
+      color: "white",
+    },
+  },
+  selected: {},
+})(MuiListItem);
 
 const useStyles = makeStyles({
   list: {
@@ -29,7 +47,7 @@ const useStyles = makeStyles({
   },
   DrawerContainer: {
     "&:hover": {
-      color: "red",
+      backgroung: "red",
     },
   },
 });
@@ -75,8 +93,8 @@ const Drawer = () => {
       </List>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon className={classes.DrawerContainer}>
+        <ListItem>
+          <ListItemIcon>
             <GroupIcon color="primary" />
           </ListItemIcon>
           <ListItemText primary={t("Applicants")} />
